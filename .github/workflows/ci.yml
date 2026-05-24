@@ -7,22 +7,23 @@ on:
     branches: [main]
 
 jobs:
- build:
+ test:
    runs-on: ubuntu-latest
 
    steps:
       - name: checkout code
         uses: actions/checkout@v4
 
-      - name: say Hello
-        run: echo "Hello! CI is working"
+      - name: setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
 
-      - name: show current directory
-        run: pwd
+      - name: Install dependencies
+        run: npm install
 
-      - name: List files
-        run: ls -la
- 
- 
+      - name: Run tests
+        run: npm test
+
 
 
